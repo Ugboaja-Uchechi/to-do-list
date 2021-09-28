@@ -5,7 +5,7 @@ This project is about a minimalist To-Do app
 
 # Screenshot
 
-# Geting Started
+
 
 # Built with
 
