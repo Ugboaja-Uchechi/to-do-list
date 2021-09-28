@@ -9,7 +9,7 @@ This project is about a minimalist To-Do app
 
 # Live demo
 
-[live demo](https://ugboaja-uchechi.github.io/to-do-list/dist/)
+[live demo](http://localhost:8080/)
 
 # Built with
 
