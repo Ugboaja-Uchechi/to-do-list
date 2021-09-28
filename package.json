@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://ugboaja-uchechi.github.io/to-do-list/dist/"
+    "url": "git+https://ugboaja-uchechi.github.io/to-do-list.git"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +22,7 @@
     "webpack": "^5.54.0",
     "webpack-cli": "^4.8.0"
   },
+  "homepage": "https://github.com/ugboaja-uchechi/to-do-list#readme",
   "dependencies": {
     "lodash": "^4.17.21"
   }
