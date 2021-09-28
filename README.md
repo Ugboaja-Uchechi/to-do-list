@@ -7,10 +7,6 @@ This project is about a minimalist To-Do app
 
 ![image](https://user-images.githubusercontent.com/74814780/135120410-a66649bc-9826-426b-8c6d-3cf3218115e8.png)
 
-# Live demo
-
-[live demo](http://localhost:8080/)
-
 # Built with
 
 - HTML
