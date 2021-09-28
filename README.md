@@ -7,6 +7,10 @@ This project is about a minimalist To-Do app
 
 ![image](https://user-images.githubusercontent.com/74814780/135120410-a66649bc-9826-426b-8c6d-3cf3218115e8.png)
 
+# Live demo
+
+[live demo](https://ugboaja-uchechi.github.io/to-do-list/dist/)
+
 # Built with
 
 - HTML
@@ -18,6 +22,10 @@ This project is about a minimalist To-Do app
 ## Authors
 
 👤 **Uchechi**
+
+[git hub](https://github.com/Ugboaja-Uchechi)
+
+[LinkedIn](https://www.linkedin.com/in/stephanie-ugboaja-930a2a216/)
 
 ## 🤝 Contributing
 
