@@ -1,6 +1,4 @@
-
 import './style.css';
-
 
 const allTasks = document.querySelector('.task-list');
 
