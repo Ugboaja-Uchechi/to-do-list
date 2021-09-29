@@ -110,13 +110,23 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 
 /***/ }),
 
+/***/ "./src/check.js":
+/*!**********************!*\
+  !*** ./src/check.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"displayBox\": () => (/* binding */ displayBox)\n/* harmony export */ });\nfunction displayBox() {\n  const labelList = document.querySelectorAll('.list');\n  const checkBoxes = document.querySelectorAll('.check-list');\n  for (let i = 0; i < checkBoxes.length; i += 1) {\n    checkBoxes[i].addEventListener('change', (e) => {\n      const taskIndex = e.target.getAttribute('data-id');\n      alert(taskIndex);\n      if (checkBoxes[i].checked) {\n        labelList[i].style.textDecoration = 'line-through';\n      } else {\n        labelList[i].style.textDecoration = 'none';\n      }\n    });\n  }\n}\ndisplayBox();\n\n\n//# sourceURL=webpack://webpack-demo/./src/check.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n\nconst allTasks = document.querySelector('.task-list');\n\nconst listArray = [\n  {\n    description: 'Complete To-Do list',\n    completed: false,\n    index: 0,\n  },\n  {\n    description: 'Take a walk',\n    completed: false,\n    index: 1,\n  },\n  {\n    description: 'Watch a movie',\n    completed: false,\n    index: 2,\n  },\n];\n\nconst showTasks = (tasks) => `\n<li>\n<input type=\"checkbox\" name=\"\" class=\"static-list\" ${tasks.index}\">\n<label for=\"\">${tasks.description}<i class=\"fas fa-ellipsis-v\"></i></label>\n</li>\n`;\nallTasks.innerHTML = listArray.map((tasks) => showTasks(tasks)).join('');\n\n//# sourceURL=webpack://webpack-demo/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _check_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./check.js */ \"./src/check.js\");\n\n\n\nconst allTasks = document.querySelector('.task-list');\n\nconst listArray = [\n  {\n    description: 'Complete To-Do list',\n    completed: false,\n    index: 0,\n  },\n  {\n    description: 'Take a walk',\n    completed: false,\n    index: 1,\n  },\n  {\n    description: 'Watch a movie',\n    completed: false,\n    index: 2,\n  },\n];\n\nconst showTasks = (tasks) => `\n<li data-id=\"${tasks.index}\">\n<input data-id=\"${tasks.index}\" type=\"checkbox\" name=\"\" class=\"check-list\">\n<label class=\"list\" for=\"\">${tasks.description}<i class=\"fas fa-ellipsis-v\"></i></label>\n</li>\n`;\nallTasks.innerHTML = listArray.map((tasks) => showTasks(tasks)).join('');\n\n(0,_check_js__WEBPACK_IMPORTED_MODULE_1__.displayBox)();\n\n// local Storage\nconst listArraySerialised = JSON.stringify(listArray);\n\nlocalStorage.setItem('listArray', listArraySerialised);\n\nconst listArrayDeserialised = JSON.parse(localStorage.getItem('listArray'));\n\nconsole.log(listArrayDeserialised);\n\n\n//# sourceURL=webpack://webpack-demo/./src/index.js?");
 
 /***/ })
 
