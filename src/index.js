@@ -1,4 +1,5 @@
 import './style.css';
+import { displayBox } from './check.js';
 
 const allTasks = document.querySelector('.task-list');
 
@@ -21,9 +22,21 @@ const listArray = [
 ];
 
 const showTasks = (tasks) => `
-<li>
-<input type="checkbox" name="" class="static-list" ${tasks.index}">
-<label for="">${tasks.description}<i class="fas fa-ellipsis-v"></i></label>
+<li data-id="${tasks.index}">
+<input data-id="${tasks.index}" type="checkbox" name="" class="check-list">
+<label class="list" for="">${tasks.description}<i class="fas fa-ellipsis-v"></i></label>
 </li>
 `;
 allTasks.innerHTML = listArray.map((tasks) => showTasks(tasks)).join('');
+
+displayBox();
+
+// local Storage
+
+const listArraySerialised = JSON.stringify(listArray);
+
+localStorage.setItem('listArray', listArraySerialised);
+
+const listArrayDeserialised = JSON.parse(localStorage.getItem('listArray'));
+
+listArrayDeserialised();
