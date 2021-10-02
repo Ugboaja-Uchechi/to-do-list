@@ -25,6 +25,7 @@ main header h3 > i {
 
 .trash {
   margin-right: 1rem;
+  cursor: pointer;
 }
 
 .add-task {
@@ -62,6 +63,10 @@ li {
   text-decoration: line-through;
 }
 
+.column {
+  cursor: pointer;
+}
+
 [type~="checkbox"] {
   cursor: pointer;
 }
@@ -78,4 +83,5 @@ label {
 .clear-task h4 {
   text-align: center;
   color: grey;
+  cursor: pointer;
 }
