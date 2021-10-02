@@ -7,10 +7,6 @@ const clear = document.querySelector('.clear-all');
 const todos = JSON.parse(localStorage.getItem('todos')) || [];
 
 function saveLocalTodos({ index, description, completed }) {
-  // let nextIndex = todos.sort((a, b) => b.index - a.index)[0] || 0;
-  // nextIndex = typeof nextIndex === 'object' ? nextIndex.index : 0;
-  // nextIndex += 1;
-
   todos.push({ index, description, completed });
   localStorage.setItem('todos', JSON.stringify(todos));
   console.log(todos);
