@@ -1,42 +1,68 @@
+/* eslint-disable import/no-mutable-exports */
+/* eslint-disable import/prefer-default-export */
 import './style.css';
-import { displayBox } from './check.js';
+import { getTodos } from './task.js';
 
-const allTasks = document.querySelector('.task-list');
+const inputText = document.querySelector('.add');
+const listTask = document.querySelector('.add-task');
+const clear = document.querySelector('.clear-all');
+const todos = JSON.parse(localStorage.getItem('todos')) || [];
+export let editIndex = null;
 
-const listArray = [
-  {
-    description: 'Complete To-Do list',
-    completed: false,
-    index: 0,
-  },
-  {
-    description: 'Take a walk',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Watch a movie',
-    completed: false,
-    index: 2,
-  },
-];
+function saveLocalTodos({ index, description, completed }) {
+  todos.push({ index, description, completed });
+  localStorage.setItem('todos', JSON.stringify(todos));
+  console.log(todos);
+}
 
-const showTasks = (tasks) => `
-<li data-id="${tasks.index}">
-<input data-id="${tasks.index}" type="checkbox" name="" class="check-list">
-<label class="list" for="">${tasks.description}<i class="fas fa-ellipsis-v"></i></label>
-</li>
-`;
-allTasks.innerHTML = listArray.map((tasks) => showTasks(tasks)).join('');
+const showTasks = (e) => {
+  e.preventDefault();
+  if (editIndex !== null) {
+    // eslint-disable-next-line no-use-before-define
+    saveEdit(editIndex);
+    editIndex = null;
+  } else {
+    saveLocalTodos({ index: todos.length + 1, description: inputText.value, completed: false });
+  }
+  getTodos();
+  inputText.value = '';
+  window.location.reload();
+};
+listTask.addEventListener('submit', showTasks);
 
-displayBox();
+function deleteItem(index) {
+  const filterItems = todos.filter((todo, id) => id !== index);
+  filterItems.forEach((item, index) => {
+    item.index = index + 1;
+  });
+  localStorage.setItem('todos', JSON.stringify(filterItems));
+  window.location.reload();
+}
 
-// local Storage
+document.querySelectorAll('.trash').forEach((e, key) => {
+  e.addEventListener('click', () => deleteItem(key));
+});
 
-const listArraySerialised = JSON.stringify(listArray);
+function editItems(index) {
+  editIndex = index;
+  // eslint-disable-next-line eqeqeq
+  const itemEdit = todos.find((a, id) => id == index);
+  inputText.value = itemEdit.description;
+}
+document.querySelectorAll('.column').forEach((e, key) => {
+  e.addEventListener('click', () => editItems(key));
+});
 
-localStorage.setItem('listArray', listArraySerialised);
+function saveEdit(index) {
+  const newInput = todos[index];
+  newInput.description = inputText.value;
+  localStorage.setItem('todos', JSON.stringify(todos));
+}
 
-const listArrayDeserialised = JSON.parse(localStorage.getItem('listArray'));
+function clearItems() {
+  const filterItems = todos.filter((todo) => todo.completed !== true);
+  localStorage.setItem('todos', JSON.stringify(filterItems));
+  window.location.reload();
+}
 
-listArrayDeserialised();
+clear.addEventListener('click', clearItems);

@@ -15,6 +15,15 @@ This project is about a minimalist To-Do app
 
 - WebPack
 
+## Getting Started
+
+To get a local copy of this project, do the following: 
+
+1. In your terminal, `cd` to the folder where you want to copy this project.
+2. Still in your terminal, type "git clone https://github.com/Ugboaja-Uchechi/to-do-list.git" 
+3. Run `npm install && npm start`
+4. If your browser doesn't open automatically, open it manually and type `http://localhost:8080/` in the URL bar.
+
 ## Authors
 
 👤 **Uchechi**
