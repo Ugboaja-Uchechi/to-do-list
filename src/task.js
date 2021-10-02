@@ -19,8 +19,6 @@ export function displayBox() {
 }
 
 export function getTodos() {
-  // to check if i already have a thing in there?
-  //  let todos;
   if (localStorage.getItem('todos') === null) {
     todos = [];
   } else {
