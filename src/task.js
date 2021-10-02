@@ -14,7 +14,7 @@ export function getTodos() {
     newDisplay += `
     <li ${completed}>
     <input type="checkbox" data-id="${item.index}" name="" class="check-list" ${check}>
-    <label class="list ${completed}" contentEditable = "true" for="">${item.description}<i class="fas fa-ellipsis-v column"></i><i class="far fa-trash-alt trash"></i></label>
+    <label class="list ${completed}" contentEditable = "true" for="">${item.description}<i class="fas fa-edit column"></i><i class="far fa-trash-alt trash"></i></label>
     </li>
     `;
   });
