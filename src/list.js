@@ -1,6 +1,6 @@
 import { getTodos } from './task.js';
 
-function displayBox() {
+export default function displayBox() {
   const checkBoxes = document.querySelectorAll('.check-list');
   for (let i = 0; i < checkBoxes.length; i += 1) {
     checkBoxes[i].addEventListener('change', (e) => {
@@ -15,5 +15,3 @@ function displayBox() {
     });
   }
 }
-// eslint-disable-next-line import/prefer-default-export
-export { displayBox };

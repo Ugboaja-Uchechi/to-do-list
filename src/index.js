@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 import './style.css';
 import { getTodos } from './task.js';
 
@@ -7,26 +6,30 @@ const listTask = document.querySelector('.add-task');
 const clear = document.querySelector('.clear-all');
 const todos = JSON.parse(localStorage.getItem('todos')) || [];
 
-const showTasks = (e) => {
-  e.preventDefault();
-  saveLocalTodos({ description: inputText.value, completed: false });
-  getTodos();
-  inputText.value = '';
-};
-listTask.addEventListener('submit', showTasks);
+function saveLocalTodos({ index, description, completed }) {
+  // let nextIndex = todos.sort((a, b) => b.index - a.index)[0] || 0;
+  // nextIndex = typeof nextIndex === 'object' ? nextIndex.index : 0;
+  // nextIndex += 1;
 
-function saveLocalTodos({ description, completed }) {
-  let nextIndex = todos.sort((a, b) => b.index - a.index)[0] || 0;
-  nextIndex = typeof nextIndex === 'object' ? nextIndex.index : 0;
-  nextIndex += 1;
-
-  todos.push({ index: nextIndex, description, completed });
+  todos.push({ index, description, completed });
   localStorage.setItem('todos', JSON.stringify(todos));
   console.log(todos);
 }
 
+const showTasks = (e) => {
+  e.preventDefault();
+  saveLocalTodos({ index: todos.length + 1, description: inputText.value, completed: false });
+  getTodos();
+  inputText.value = '';
+  window.location.reload();
+};
+listTask.addEventListener('submit', showTasks);
+
 function deleteItem(index) {
   const filterItems = todos.filter((todo, id) => id !== index);
+  filterItems.forEach((item, index) => {
+    item.index = index + 1;
+  });
   localStorage.setItem('todos', JSON.stringify(filterItems));
   window.location.reload();
 }
