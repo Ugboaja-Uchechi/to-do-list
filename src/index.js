@@ -1,42 +1,108 @@
+/* eslint-disable no-use-before-define */
 import './style.css';
-import { displayBox } from './check.js';
+import { getTodos } from './task.js';
 
-const allTasks = document.querySelector('.task-list');
+const inputText = document.querySelector('.add');
+const listTask = document.querySelector('.add-task');
+// const clear = document.querySelector('.clear-task');
+// const bin = document.querySelectorAll('.trash');
 
-const listArray = [
-  {
-    description: 'Complete To-Do list',
-    completed: false,
-    index: 0,
-  },
-  {
-    description: 'Take a walk',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Watch a movie',
-    completed: false,
-    index: 2,
-  },
-];
+const showTasks = (e) => {
+  e.preventDefault();
+  saveLocalTodos({ description: inputText.value, completed: false });
+  getTodos();
+  inputText.value = '';
+};
+listTask.addEventListener('submit', showTasks);
 
-const showTasks = (tasks) => `
-<li data-id="${tasks.index}">
-<input data-id="${tasks.index}" type="checkbox" name="" class="check-list">
-<label class="list" for="">${tasks.description}<i class="fas fa-ellipsis-v"></i></label>
-</li>
-`;
-allTasks.innerHTML = listArray.map((tasks) => showTasks(tasks)).join('');
+function saveLocalTodos({ description, completed }) {
+  const todos = JSON.parse(localStorage.getItem('todos')) || [];
+  let nextIndex = todos.sort((a, b) => b.index - a.index)[0] || 0;
+  nextIndex = typeof nextIndex === 'object' ? nextIndex.index : 0;
+  nextIndex += 1;
 
-displayBox();
+  todos.push({ index: nextIndex, description, completed });
+  localStorage.setItem('todos', JSON.stringify(todos));
+  console.log(todos);
+}
+
+// document.addEventListener('DomContentLoaded', getTodos);
+// document.addEventListener('DomContentLoaded', showTasks);
+
+// const deleteItem = () => {
+//   localStorage.clear();
+// };
+
+// clear.addEventListener('click', deleteItem);
+
+// function checkTodos(e) {
+//   const item = e.target;
+//   const todo = item.parentElement;
+//   // Delete todo
+//   if (item.classList.contains('trash')) {
+//     const deleteId = todos.parentElement;
+//     deleteId.style.display = 'none';
+//     clear(todos);
+//     console.log(deleteId);
+//   }
+//   console.log(todo);
+//   if (item.checked) {
+//     todos.classList.add('completed');
+//     console.log(todo, item);
+//     clear(item);
+//   }
+//   if (!item.checked) {
+//     todos.classList.remove('completed');
+//     console.log(todo, item);
+//     clear(item);
+//   }
+// }
+// checkTodos();
+
+// const bars = document.querySelectorAll('.column');
+
+// function open() {
+//   for (let j = 0; j < bars.length; j += 1) {
+//     bars[j].addEventListener('click', () => {
+//       if (bars[j].onclick) {
+//         bars[j].style.display = 'none';
+//         bin[j].style.display = 'flex';
+//       } else {
+//         bars.style.display = 'flex';
+//         bin.style.display = 'none';
+//       }
+//     });
+//   }
+// }
+// open();
+
+// Add Tasks
+// const addIcon = document.querySelector('icon');
+// addIcon.addEventListener('click', (e) => {
+//   if (inputText.value !== '') {
+//     e.preventDefault();
+//     // Create new element
+//     const newLi = document.createElement('label');
+//     newLi.classList.add('list');
+//     newLi.innerHTML = inputText.value;
+//     allTasks.appendChild(newLi);
+//   }
+// });
+
+// Remove tasks
 
 // local Storage
 
-const listArraySerialised = JSON.stringify(listArray);
+// const listArraySerialised = JSON.stringify(showTasks);
 
-localStorage.setItem('listArray', listArraySerialised);
+// localStorage.setItem('newDisplay', listArraySerialised);
 
-const listArrayDeserialised = JSON.parse(localStorage.getItem('listArray'));
+// const listArrayDeserialised = JSON.parse(localStorage.getItem('newDisplay'));
 
-listArrayDeserialised();
+// listArrayDeserialised();
+
+// if (localStorage.setItem('listArrayDeserialised') === 'true') {
+//   document.querySelectorAll('input').checked = true;
+// } else {
+//   document.querySelectorAll('input').checked = false;
+// }

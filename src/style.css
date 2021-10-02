@@ -20,6 +20,13 @@ label > i,
 main header h3 > i {
   float: right;
   margin-right: 2rem;
+  color: gray;
+}
+
+.trash {
+  /* position: relative;
+  left: 0.6rem; */
+  margin-right: 0;
 }
 
 .add-task {
@@ -30,6 +37,7 @@ main header h3 > i {
 
 .icon {
   margin-right: 2rem;
+  color: gray;
 }
 
 .add-task input {
@@ -52,12 +60,21 @@ li {
   padding-left: 0.8rem;
 }
 
+.completed {
+  text-decoration: line-through;
+}
+
 [type~="checkbox"] {
   cursor: pointer;
 }
 
+::placeholder {
+  font-style: italic;
+}
+
 label {
   margin-left: 0.8rem;
+  outline: none;
 }
 
 .clear-task h4 {
